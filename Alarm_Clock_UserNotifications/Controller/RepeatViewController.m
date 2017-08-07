@@ -21,6 +21,8 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    
+    self.title = @"重复";
     self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
     
     if (self.data) {

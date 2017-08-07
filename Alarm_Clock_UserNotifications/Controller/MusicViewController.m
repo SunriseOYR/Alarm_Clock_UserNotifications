@@ -22,7 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
+    self.title = @"铃声";
+    
     _musicList = @[@"lightM_01.caf",
                    @"lightM_02.caf",
                    @"lightM_03.caf",

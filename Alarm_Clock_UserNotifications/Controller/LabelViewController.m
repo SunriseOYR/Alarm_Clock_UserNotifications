@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"标签";
     self.tableView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
     
     if (self.data) {
