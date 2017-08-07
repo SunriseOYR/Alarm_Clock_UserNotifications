@@ -22,16 +22,26 @@
 
 @implementation HomeViewController
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReciveNotification:) name:@"didReciveNotification" object:nil];
     
     self.tableView.tableFooterView = [UIView new];
 //    self.tableView.allowsSelectionDuringEditing
+}
 
-    
+- (void)didReciveNotification:(NSNotification *)notif {
+    [self.viewModel reciveNotificationWithIdentifer:notif.userInfo[@"idf"]];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 - (IBAction)action_editBtn:(UIBarButtonItem *)sender {

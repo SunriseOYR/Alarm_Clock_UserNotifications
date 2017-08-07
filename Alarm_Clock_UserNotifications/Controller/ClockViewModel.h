@@ -28,6 +28,7 @@
 //开关改变
 - (void)changeClockSwitchIsOn:(BOOL)isOn WithModel:(ClockModel *)model;
 
+- (void)reciveNotificationWithIdentifer:(NSString *)identifer;
 @end
 
 @interface ClockModel : NSObject<NSCoding> {
@@ -48,7 +49,7 @@
 @property (nonatomic, copy) NSString *identifer;
 
 @property (nonatomic, strong) NSArray *repeatStrs;
-@property (nonatomic, strong) NSArray *identifers;
+@property (nonatomic, strong) NSArray *identifers;//重复 闹钟 的标识符
 //@property (nonatomic, strong) NSDateComponents *dateComponents;
 
 @property (nonatomic, assign) BOOL isOn;

@@ -56,27 +56,31 @@
     [self saveData];
 }
 
+- (void)reciveNotificationWithIdentifer:(NSString *)identifer {
+    [self.clockData enumerateObjectsUsingBlock:^(ClockModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([obj.identifer isEqualToString:identifer] && obj.repeatStr.length == 0) {
+            [self changeClockSwitchIsOn:NO WithModel:obj];
+        }
+        
+    }];
+}
+
 + (instancetype)readData {
     YYCache *cache = [[YYCache alloc] initWithName:@"cache"];
     ClockViewModel * viewModel = [cache objectForKey:[self keyForSaveClockData]];
     if (!viewModel) {
         viewModel = [[ClockViewModel alloc] init];
     }
+    
+    [UNNotificationsManager getDeliveredNotificationIdentiferBlock:^(NSArray<NSString *> *identifers) {
+        [identifers enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [viewModel reciveNotificationWithIdentifer:obj];
+        }];
+    }];
+    
     return viewModel;
 }
-
-//+ (void)addClockWithModel:(ClockModel *)model {
-//    
-//    if (model.repeatStrs.count == 0) {
-//        [UNotificationsManager addNotificationWithContent:[UNotificationsManager contentWithTitle:@"时钟" subTitle:nil body:nil sound:[UNNotificationSound soundNamed:model.music]] dateComponents:[UNotificationsManager componentsWithDate:model.date] identifer:model.identifer isRepeat:model.repeats completionHanler:^(NSError *error) {
-//            NSLog(@"111%@", error);
-//        }];
-//
-//    }
-//    
-//    //问题： identifers 已经改变，无法删除
-//    
-//}
 
 + (void)removeClockWithModel:(ClockModel *)model {
     [UNNotificationsManager removeNotificationWithIdentifer:model.identifer];
@@ -192,18 +196,6 @@
     }
     return _identifer;
 }
-
-//未知
-//- (NSArray *)identifers {
-//    if (!_identifers) {
-//        NSMutableArray *array = [NSMutableArray array];
-//        [self.repeatStrs enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            [array addObject:[self.identifer stringByAppendingString:obj]];
-//        }];
-//        _identifers = array;
-//    }
-//    return [_identifers copy];
-//}
 
 - (void)setRepeatStrs:(NSArray *)repeatStrs {
     

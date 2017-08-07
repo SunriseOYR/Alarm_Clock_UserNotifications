@@ -34,6 +34,7 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     NSLog(@"%s", __func__);
 //    [self handCommnet:notification.request.]
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : notification.request.identifier}];
     completionHandler(UNNotificationPresentationOptionAlert + UNNotificationPresentationOptionSound + UNNotificationPresentationOptionBadge);
 }
 
@@ -56,10 +57,15 @@
     }else if ([actionIdef isEqualToString:actionOneHour]) {
         date = [NSDate dateWithTimeIntervalSinceNow:60 * 60];
     }
-    [UNNotificationsManager addNotificationWithContent:response.notification.request.content identifer:@"asd" trigger:[UNNotificationsManager triggerWithDateComponents:[UNNotificationsManager componentsWithDate:date] repeats:NO] completionHanler:^(NSError *error) {
-        NSLog(@"delay11111 %@", error);
-    }];
     
+    if (date) {
+        [UNNotificationsManager addNotificationWithContent:response.notification.request.content identifer:response.notification.request.identifier trigger:[UNNotificationsManager triggerWithDateComponents:[UNNotificationsManager componentsWithDate:date] repeats:NO] completionHanler:^(NSError *error) {
+            NSLog(@"delay11111 %@", error);
+        }];
+
+    }else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : response.notification.request.identifier}];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

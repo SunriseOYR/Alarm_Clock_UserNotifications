@@ -118,6 +118,35 @@
     }];
 }
 
++ (void)getDeliveredNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *))idBlock {
+    
+    [[self center] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+        NSMutableArray *array= [NSMutableArray array];
+        
+        [notifications enumerateObjectsUsingBlock:^(UNNotification * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [array addObject:obj.request.identifier];
+        }];
+        
+        if (idBlock) {
+            idBlock([array copy]);
+        }
+    }];
+}
+
++ (void)getPendingNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *))idBlock {
+
+    [[self center] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+        NSMutableArray *array= [NSMutableArray array];
+
+        [requests enumerateObjectsUsingBlock:^(UNNotificationRequest * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [array addObject:obj.identifier];
+        }];
+        if (idBlock) {
+            idBlock([array copy]);
+        }
+    }];
+}
+
 #pragma mark -- NSDateComponents
 + (NSDateComponents *)componentsWithDate:(NSDate *)date {
     

@@ -105,10 +105,18 @@
 + (void)notificationIsExitWithIdentifer:(NSString *)identifer completion:(void(^)(BOOL isExit))completion;
 
 /*
- * 获取所有通知
+ * 获取所有通知的标识符
  */
 + (void)getAllNotificationIdentiferBlock:(void(^)(NSArray <NSString *>*identifers))idBlock;
 
+/*
+ * 获取已交付的标识符
+ */
++ (void)getDeliveredNotificationIdentiferBlock:(void(^)(NSArray <NSString *>*identifers))idBlock;
+/*
+ * 获取的标识符
+ */
++ (void)getPendingNotificationIdentiferBlock:(void(^)(NSArray <NSString *>*identifers))idBlock;
 #pragma mark -- NSDateComponents
 /* NSDateComponents 日期组件
  * date  日期
