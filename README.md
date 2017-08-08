@@ -1,5 +1,18 @@
 # Alarm_Clock_UserNotifications
-高仿iOS系统闹钟 UserNotifications
+
+###ios系统闹钟
+
+* 添加闹钟效果图   
+![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/001.gif?raw=true)  
+
+* 收到通知效果图   
+![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/002.gif?raw=true)
+
+* 前言  
+最近项目中涉及到了本地通知的功能，索性就模仿系统闹钟写了个demo，对于iOS系统闹钟，应该都比较熟悉，该demo，基本实现了系统闹钟的全部功能。该demo本地通知使用的是iOS10 推出的UserNotifications， 关于UserNotifications的介绍和使用，网上已有诸多文章，在此就不多做赘述。
+
+* UNNotificationsManager 关于闹钟所使用到的UserNotifications做了一个简单的封装,部分代码如下 
+
     //注册本地通知
     + (void)registerLocalNotification;
 
@@ -56,4 +69,9 @@
     * interval  通知间隔
     * repeats 是否重复
      */
-    + (UNNotificationTrigger *)triggerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats;
+    + (UNNotificationTrigger *)triggerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats;  
+    
+* 添加闹钟    
+> 普通闹钟 
+![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/004.png?raw=true)
+    
