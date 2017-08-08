@@ -28,6 +28,7 @@
 //开关改变
 - (void)changeClockSwitchIsOn:(BOOL)isOn WithModel:(ClockModel *)model;
 
+//收到通知
 - (void)reciveNotificationWithIdentifer:(NSString *)identifer;
 @end
 
@@ -56,10 +57,9 @@
 @property (nonatomic, assign) BOOL isLater;
 @property (nonatomic, assign) BOOL repeats;
 
-//设置标识符
-- (void)changeIdentifers;
-
+//添加闹钟
 - (void)addUserNotification;
+//移除闹钟
 - (void)removeUserNotification;
 
 - (NSDate *)date;

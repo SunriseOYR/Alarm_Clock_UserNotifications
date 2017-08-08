@@ -117,16 +117,6 @@
     return format;
 }
 
-//单独方法，在添加通知的时候用，防止identifer 改变，无法删除
-- (void)changeIdentifers {
-    
-    NSMutableArray *idenArray = [NSMutableArray array];
-    [self.repeatStrs enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [idenArray addObject:[self.identifer stringByAppendingString:obj]];
-    }];
-    _identifers = [idenArray copy];
-}
-
 - (void)addUserNotification {
     
     if ([self.repeatStr isEqualToString:@"每天"]) {
