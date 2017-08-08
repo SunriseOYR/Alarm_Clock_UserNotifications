@@ -13,7 +13,8 @@
 
 * UNNotificationsManager 关于闹钟所使用到的UserNotifications做了一个简单的封装,部分代码如下  
       
-        //注册本地通知
+        
+        //注册本地通知
         + (void)registerLocalNotification;
 
         #pragma mark -- AddNotification
