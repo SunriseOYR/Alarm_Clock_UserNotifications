@@ -21,7 +21,6 @@
 //注册本地通知
 + (void)registerLocalNotification;
 
-
 #pragma mark -- AddNotification
 
 /* 添加通知
