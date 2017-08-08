@@ -205,6 +205,8 @@
     content.subtitle = subTitle;
     content.body = bodyStr;
     content.sound = [UNNotificationSound defaultSound];
+    content.categoryIdentifier = identiferStr;
+
     return content;
 }
 
@@ -218,7 +220,6 @@
 + (UNMutableNotificationContent *)contentWithTitle:(NSString *)title subTitle:(NSString *)subTitle body:(NSString *)body sound:(UNNotificationSound *)sound {
     UNMutableNotificationContent *content = [self contentWithTitle:title subTitle:subTitle body:body];
     content.sound = sound;
-    content.categoryIdentifier = identiferStr;
 
     return content;
 }
