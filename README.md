@@ -197,14 +197,5 @@
     format.AMSymbol = @"上午";
     format.PMSymbol = @"下午"; 
 
-* 缺陷与不足
 
- ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/009.png?raw=true)
-
-
-整个demo，尚有一个没有完成的功能，就是上图中的稍后提醒（demo点击没有效果），开启这个功能，会在闹钟提醒之后，如果用户未做处理，过几分钟（据说是9分钟）后会再次提醒。   
-
-笔者想了几种实现方法但都达不到理想效果，如最开始添加两个闹钟，若用户有停止操作，就移除后一个，但是也最多提醒两次。   
-
-主要障碍是程序在后台无法接收通知的响应，读者大牛有好的建议或是实现方法，还望指教
 
