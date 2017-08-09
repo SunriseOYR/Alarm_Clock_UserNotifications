@@ -123,8 +123,8 @@
 * 通知栏选项 
 
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/007.png?raw=true)
-
-> 首先注册通知的时候需要UNNotificationCategory 以及UNNotificationAction 
+![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/010.png?raw=true)
+ > 首先注册通知的时候需要UNNotificationCategory 以及UNNotificationAction 
 
     UNNotificationAction *action1 = [UNNotificationAction actionWithIdentifier:actionFiveMin title:@"5分钟后" options:UNNotificationActionOptionNone];
 
@@ -136,25 +136,24 @@
     
     UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:identiferStr actions:@[action1, action2,action3, action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
     
-    [center setNotificationCategories:[NSSet setWithArray:@[category]]];
-
-> 然后在设置UNMutableNotificationContent的时候需要设置对应的categoryIdentifier   
-
-    + (UNMutableNotificationContent *)contentWithTitle:(NSString *)title subTitle:(NSString *)subTitle body:(NSString *)body {
+    UNNotificationCategory *stopCategory = [UNNotificationCategory categoryWithIdentifier:categryStopIdf actions:@[action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
     
-        //title、body不能为空
-        NSString *titleStr = title.length > 0 ? title : @"闹钟";
-        NSString *bodyStr = body.length > 0 ? body : @"闹钟";
-        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-        content.title = titleStr;
-        content.subtitle = subTitle;
-        content.body = bodyStr;
-        content.sound = [UNNotificationSound defaultSound];
-        content.categoryIdentifier = identiferStr;
+    [center setNotificationCategories:[NSSet setWithArray:@[category,stopCategory]]];
+
+> 然后在设置UNMutableNotificationContent的时候需要设置对应的categoryIdentifier   这里区分了是否设置了稍候提醒  
+![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/009.png?raw=true)
+  
+    + (void)addNotificationWithContent:(UNNotificationContent *)content identifer:(NSString *)identifer trigger:(UNNotificationTrigger *)trigger completionHanler:(void (^)(NSError *))handler {
     
-        return content;
+        //设置 category
+        UNMutableNotificationContent *aContent = [content mutableCopy];
+        if ([identifer hasPrefix:@"isLater"]) {
+            aContent.categoryIdentifier = categryLaterIdf;
+        }else {
+            aContent.categoryIdentifier = categryStopIdf;
+        }
+        [self addNotificationWithRequest:[UNNotificationRequest requestWithIdentifier:identifer content:aContent trigger:trigger] completionHanler:handler];
     }
-
 > 最后在用户点击导航栏控件的时候，根据identifier处理相应事件   
   
     //与导航控件交互的时候会调用
@@ -162,8 +161,7 @@
         NSLog(@"%s", __func__);
         [self handCommnet:response];
         completionHandler();
-    }
->
+    } 
     -(void)handCommnet:(UNNotificationResponse *)response
     {
         NSString *actionIdef = response.actionIdentifier;
@@ -182,7 +180,6 @@
             [UNNotificationsManager addNotificationWithContent:response.notification.request.content identifer:response.notification.request.identifier trigger:[UNNotificationsManager triggerWithDateComponents:[UNNotificationsManager componentsWithDate:date] repeats:NO] completionHanler:^(NSError *error) {
                 NSLog(@"delay11111 %@", error);
             }];
-    
         }
     }
 
@@ -197,5 +194,4 @@
     format.AMSymbol = @"上午";
     format.PMSymbol = @"下午"; 
 
-
-
+最后  [GitHub传送门](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications)，记得点个赞额
