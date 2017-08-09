@@ -194,4 +194,3 @@
     format.AMSymbol = @"上午";
     format.PMSymbol = @"下午"; 
 
-最后  [GitHub传送门](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications)，记得点个赞额
