@@ -34,10 +34,12 @@
     UNNotificationAction *action4 = [UNNotificationAction actionWithIdentifier:actionStop title:@"停止" options:UNNotificationActionOptionNone];
     
     
-    UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:identiferStr actions:@[action1, action2,action3, action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+    UNNotificationCategory *category = [UNNotificationCategory categoryWithIdentifier:categryLaterIdf actions:@[action1, action2,action3, action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
     
     
-    [center setNotificationCategories:[NSSet setWithArray:@[category]]];
+    UNNotificationCategory *stopCategory = [UNNotificationCategory categoryWithIdentifier:categryStopIdf actions:@[action4] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+    
+    [center setNotificationCategories:[NSSet setWithArray:@[category,stopCategory]]];
     
 }
 
@@ -49,7 +51,16 @@
 
 + (void)addNotificationWithContent:(UNNotificationContent *)content identifer:(NSString *)identifer trigger:(UNNotificationTrigger *)trigger completionHanler:(void (^)(NSError *))handler {
     
-    [self addNotificationWithRequest:[UNNotificationRequest requestWithIdentifier:identifer content:content trigger:trigger] completionHanler:handler];
+    //设置 category
+    UNMutableNotificationContent *aContent = [content mutableCopy];
+    if ([identifer hasPrefix:@"isLater"]) {
+        aContent.categoryIdentifier = categryLaterIdf;
+
+    }else {
+        aContent.categoryIdentifier = categryStopIdf;
+    }
+    
+    [self addNotificationWithRequest:[UNNotificationRequest requestWithIdentifier:identifer content:aContent trigger:trigger] completionHanler:handler];
 }
 
 + (void)addNotificationWithContent:(UNNotificationContent *)content dateComponents:(NSDateComponents *)components identifer:(NSString *)identifer isRepeat:(BOOL)repeat completionHanler:(void (^)(NSError *))handler {
@@ -205,7 +216,6 @@
     content.subtitle = subTitle;
     content.body = bodyStr;
     content.sound = [UNNotificationSound defaultSound];
-    content.categoryIdentifier = identiferStr;
 
     return content;
 }

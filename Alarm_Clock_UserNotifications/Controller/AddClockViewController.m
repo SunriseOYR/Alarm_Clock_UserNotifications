@@ -88,6 +88,10 @@
 
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (ClockModel *)model {
     if (!_model) {
         _model = [ClockModel new];

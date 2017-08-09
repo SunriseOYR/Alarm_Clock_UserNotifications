@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
 
-#define identiferStr @"categryIdentifer"
+#define categryLaterIdf @"categryIdentiferLater"
+#define categryStopIdf @"categryIdentiferStop"
+
 #define actionFiveMin @"fiveMinete"
 #define actionHalfAnHour @"halfAnHour"
 #define actionOneHour @"oneHour"
