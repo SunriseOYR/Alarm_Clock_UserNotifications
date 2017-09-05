@@ -37,6 +37,14 @@
 //    self.tableView.allowsSelectionDuringEditing
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (self.tableView.editing) {
+        [self action_editBtn:self.navigationItem.leftBarButtonItem];
+    }
+}
+
 - (void)didReciveNotification:(NSNotification *)notif {
     [self.viewModel reciveNotificationWithIdentifer:notif.userInfo[@"idf"]];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -52,6 +60,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UINavigationController *nav = segue.destinationViewController;
+    
     AddClockViewController *vc = (AddClockViewController *)nav.topViewController;
     if ([segue.identifier isEqualToString:@"addPresentVCIdf"]) {
         vc.block = ^(ClockModel *model){
@@ -61,7 +70,7 @@
     }else {
         vc.model = self.viewModel.clockData[self.tableView.indexPathForSelectedRow.row];
         vc.block = ^(ClockModel *model){
-            NSLog(@"%ld", self.tableView.indexPathForSelectedRow.row);
+//            NSLog(@"%ld", self.tableView.indexPathForSelectedRow.row);
             [self.viewModel replaceModelAtIndex:self.tableView.indexPathForSelectedRow.row withModel:model];
             [self.tableView reloadData];
         };

@@ -37,6 +37,7 @@
     [self.clockData[index] removeUserNotification];
     [self.clockData replaceObjectAtIndex:index withObject:model];
     [self saveData];
+//    model.identifer = nil;
     [model addUserNotification];
 }
 
@@ -167,14 +168,14 @@
     [self setDateForTimeClock];
 }
 
-- (NSDate *)date {
-    if (!_date) {
-        NSDateFormatter *format = [self getFormatter];
-        NSString *dateStr = [NSString stringWithFormat:@"%@%@",_timeText, _timeClock];
-        _date = [format dateFromString:dateStr];
-    }
-    return _date;
-}
+//- (NSDate *)date {
+//    if (!_date) {
+//        NSDateFormatter *format = [self getFormatter];
+//        NSString *dateStr = [NSString stringWithFormat:@"%@%@",_timeText, _timeClock];
+//        _date = [format dateFromString:dateStr];
+//    }
+//    return _date;
+//}
 
 - (NSString *)identifer {
     if (!_identifer) {

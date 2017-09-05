@@ -382,7 +382,7 @@
 				TargetAttributes = {
 					89E842001EC548FF00563E97 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = X3YFLE989D;
+						DevelopmentTeam = UNNVERQ745;
 						ProvisioningStyle = Automatic;
 					};
 					89E842191EC548FF00563E97 = {
@@ -620,7 +620,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X3YFLE989D;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UNNVERQ745;
 				INFOPLIST_FILE = Alarm_Clock_UserNotifications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "OYR.Alarm-Clock-UserNotifications";
@@ -632,7 +633,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = X3YFLE989D;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UNNVERQ745;
 				INFOPLIST_FILE = Alarm_Clock_UserNotifications/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "OYR.Alarm-Clock-UserNotifications";

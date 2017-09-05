@@ -20,6 +20,11 @@
 
 @implementation MusicViewController
 
+- (void)dealloc
+{
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     

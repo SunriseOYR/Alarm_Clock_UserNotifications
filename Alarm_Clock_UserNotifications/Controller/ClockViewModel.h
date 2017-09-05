@@ -32,9 +32,9 @@
 - (void)reciveNotificationWithIdentifer:(NSString *)identifer;
 @end
 
-@interface ClockModel : NSObject<NSCoding> {
-    NSDate *_date;
-}
+@interface ClockModel : NSObject<NSCoding>
+
+@property (nonatomic, copy) NSDate *date;
 
 //am,pm
 @property (nonatomic, copy) NSString *timeText;
