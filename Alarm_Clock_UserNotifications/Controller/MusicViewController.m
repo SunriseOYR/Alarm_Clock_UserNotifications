@@ -43,6 +43,9 @@
     if (self.data) {
         _row = [_musicList indexOfObject:self.data];
     }
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0);
+
 }
 
 - (void)didReceiveMemoryWarning {

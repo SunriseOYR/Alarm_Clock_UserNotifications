@@ -105,14 +105,22 @@
 - (void)setDateForTimeClock {
     NSDateFormatter *format = [self getFormatter];
     NSString *dateString = [format stringFromDate:_date];
-    _timeText = [dateString substringToIndex:2];
-    _timeClock = [dateString substringFromIndex:2];
+    
+    if ([dateString containsString:@"上午"] || [dateString containsString:@"下午"]) {
+        _timeText = [dateString substringToIndex:2];
+        _timeClock = [dateString substringFromIndex:2];
+    } else {
+        _timeClock = dateString;
+        _timeText = @"";
+    }
+    
+    
     
 }
 
 - (NSDateFormatter *)getFormatter {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    format.dateFormat = @"ahh:mm";
+    format.dateFormat = @"ah:mm";
     format.AMSymbol = @"上午";
     format.PMSymbol = @"下午";
     return format;

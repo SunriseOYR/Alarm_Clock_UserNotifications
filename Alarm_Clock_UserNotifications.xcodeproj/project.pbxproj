@@ -36,6 +36,17 @@
 		89E8421F1EC548FF00563E97 /* Alarm_Clock_UserNotificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E8421E1EC548FF00563E97 /* Alarm_Clock_UserNotificationsTests.m */; };
 		89E8422A1EC548FF00563E97 /* Alarm_Clock_UserNotificationsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E842291EC548FF00563E97 /* Alarm_Clock_UserNotificationsUITests.m */; };
 		C920167120F327DC009F4A7B /* UNNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C920167020F327DC009F4A7B /* UNNotificationsManager.m */; };
+		C954B7B220F72CDB00CEA6CA /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B79B20F72CDB00CEA6CA /* Aspects.m */; };
+		C954B7B320F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B79E20F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.m */; };
+		C954B7B420F72CDB00CEA6CA /* NSObject+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7A020F72CDB00CEA6CA /* NSObject+ORIBProperty.m */; };
+		C954B7B520F72CDB00CEA6CA /* UIButton+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7A320F72CDB00CEA6CA /* UIButton+ORIBProperty.m */; };
+		C954B7B620F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7A520F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.m */; };
+		C954B7B720F72CDB00CEA6CA /* UIControl+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7A720F72CDB00CEA6CA /* UIControl+ORIBProperty.m */; };
+		C954B7B820F72CDB00CEA6CA /* UIImageView+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7A920F72CDB00CEA6CA /* UIImageView+ORIBProperty.m */; };
+		C954B7B920F72CDB00CEA6CA /* UILabel+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7AB20F72CDB00CEA6CA /* UILabel+ORIBProperty.m */; };
+		C954B7BA20F72CDB00CEA6CA /* UITextField+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7AD20F72CDB00CEA6CA /* UITextField+ORIBProperty.m */; };
+		C954B7BB20F72CDB00CEA6CA /* UITextView+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7AF20F72CDB00CEA6CA /* UITextView+ORIBProperty.m */; };
+		C954B7BC20F72CDB00CEA6CA /* UIView+ORIBProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C954B7B120F72CDB00CEA6CA /* UIView+ORIBProperty.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +119,29 @@
 		89E8422B1EC548FF00563E97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C920166F20F327DC009F4A7B /* UNNotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNNotificationsManager.h; sourceTree = "<group>"; };
 		C920167020F327DC009F4A7B /* UNNotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNNotificationsManager.m; sourceTree = "<group>"; };
+		C954B79A20F72CDB00CEA6CA /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
+		C954B79B20F72CDB00CEA6CA /* Aspects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aspects.m; sourceTree = "<group>"; };
+		C954B79D20F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B79E20F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B79F20F72CDB00CEA6CA /* NSObject+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7A020F72CDB00CEA6CA /* NSObject+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7A120F72CDB00CEA6CA /* ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORIBProperty.h; sourceTree = "<group>"; };
+		C954B7A220F72CDB00CEA6CA /* UIButton+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7A320F72CDB00CEA6CA /* UIButton+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7A420F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7A520F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewFlowLayout+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7A620F72CDB00CEA6CA /* UIControl+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7A720F72CDB00CEA6CA /* UIControl+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7A820F72CDB00CEA6CA /* UIImageView+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7A920F72CDB00CEA6CA /* UIImageView+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7AA20F72CDB00CEA6CA /* UILabel+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7AB20F72CDB00CEA6CA /* UILabel+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7AC20F72CDB00CEA6CA /* UITextField+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7AD20F72CDB00CEA6CA /* UITextField+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7AE20F72CDB00CEA6CA /* UITextView+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7AF20F72CDB00CEA6CA /* UITextView+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ORIBProperty.m"; sourceTree = "<group>"; };
+		C954B7B020F72CDB00CEA6CA /* UIView+ORIBProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ORIBProperty.h"; sourceTree = "<group>"; };
+		C954B7B120F72CDB00CEA6CA /* UIView+ORIBProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ORIBProperty.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +214,8 @@
 		89D50B791ED43E9500EF24DD /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				C954B79920F72CDB00CEA6CA /* Aspects */,
+				C954B79C20F72CDB00CEA6CA /* IBProperty */,
 				8984C5BB1ED516FF00110D4F /* YYModel */,
 				89D50B7A1ED43EB500EF24DD /* YYCache */,
 			);
@@ -313,6 +349,43 @@
 				C920167020F327DC009F4A7B /* UNNotificationsManager.m */,
 			);
 			path = UNNotificationsManager;
+			sourceTree = "<group>";
+		};
+		C954B79920F72CDB00CEA6CA /* Aspects */ = {
+			isa = PBXGroup;
+			children = (
+				C954B79A20F72CDB00CEA6CA /* Aspects.h */,
+				C954B79B20F72CDB00CEA6CA /* Aspects.m */,
+			);
+			path = Aspects;
+			sourceTree = "<group>";
+		};
+		C954B79C20F72CDB00CEA6CA /* IBProperty */ = {
+			isa = PBXGroup;
+			children = (
+				C954B79D20F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.h */,
+				C954B79E20F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.m */,
+				C954B79F20F72CDB00CEA6CA /* NSObject+ORIBProperty.h */,
+				C954B7A020F72CDB00CEA6CA /* NSObject+ORIBProperty.m */,
+				C954B7A120F72CDB00CEA6CA /* ORIBProperty.h */,
+				C954B7A220F72CDB00CEA6CA /* UIButton+ORIBProperty.h */,
+				C954B7A320F72CDB00CEA6CA /* UIButton+ORIBProperty.m */,
+				C954B7A420F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.h */,
+				C954B7A520F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.m */,
+				C954B7A620F72CDB00CEA6CA /* UIControl+ORIBProperty.h */,
+				C954B7A720F72CDB00CEA6CA /* UIControl+ORIBProperty.m */,
+				C954B7A820F72CDB00CEA6CA /* UIImageView+ORIBProperty.h */,
+				C954B7A920F72CDB00CEA6CA /* UIImageView+ORIBProperty.m */,
+				C954B7AA20F72CDB00CEA6CA /* UILabel+ORIBProperty.h */,
+				C954B7AB20F72CDB00CEA6CA /* UILabel+ORIBProperty.m */,
+				C954B7AC20F72CDB00CEA6CA /* UITextField+ORIBProperty.h */,
+				C954B7AD20F72CDB00CEA6CA /* UITextField+ORIBProperty.m */,
+				C954B7AE20F72CDB00CEA6CA /* UITextView+ORIBProperty.h */,
+				C954B7AF20F72CDB00CEA6CA /* UITextView+ORIBProperty.m */,
+				C954B7B020F72CDB00CEA6CA /* UIView+ORIBProperty.h */,
+				C954B7B120F72CDB00CEA6CA /* UIView+ORIBProperty.m */,
+			);
+			path = IBProperty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -456,20 +529,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				89D50B851ED43EB500EF24DD /* YYKVStorage.m in Sources */,
+				C954B7B920F72CDB00CEA6CA /* UILabel+ORIBProperty.m in Sources */,
 				890618881ED3E291003C78D2 /* AddClockViewController.m in Sources */,
 				89D50B841ED43EB500EF24DD /* YYDiskCache.m in Sources */,
 				89D50B861ED43EB500EF24DD /* YYMemoryCache.m in Sources */,
+				C954B7BC20F72CDB00CEA6CA /* UIView+ORIBProperty.m in Sources */,
 				8906188B1ED3E310003C78D2 /* RepeatViewController.m in Sources */,
+				C954B7B520F72CDB00CEA6CA /* UIButton+ORIBProperty.m in Sources */,
 				8906188E1ED3E3C9003C78D2 /* MusicViewController.m in Sources */,
+				C954B7B420F72CDB00CEA6CA /* NSObject+ORIBProperty.m in Sources */,
 				89E1BFCC1ED2EB6600DE3D29 /* AlarmClockCell.m in Sources */,
 				89D50B831ED43EB500EF24DD /* YYCache.m in Sources */,
 				89E8420C1EC548FF00563E97 /* HomeViewController.m in Sources */,
 				8984C5C11ED516FF00110D4F /* NSObject+YYModel.m in Sources */,
 				89251E0D1EDEA08A00CC95A3 /* BaseTableViewController.m in Sources */,
+				C954B7B820F72CDB00CEA6CA /* UIImageView+ORIBProperty.m in Sources */,
+				C954B7BB20F72CDB00CEA6CA /* UITextView+ORIBProperty.m in Sources */,
+				C954B7B320F72CDB00CEA6CA /* NSLayoutConstraint+ORIBProperty.m in Sources */,
+				C954B7B720F72CDB00CEA6CA /* UIControl+ORIBProperty.m in Sources */,
+				C954B7B220F72CDB00CEA6CA /* Aspects.m in Sources */,
+				C954B7BA20F72CDB00CEA6CA /* UITextField+ORIBProperty.m in Sources */,
 				890618941ED41411003C78D2 /* ClockViewModel.m in Sources */,
 				89E842091EC548FF00563E97 /* AppDelegate.m in Sources */,
 				89E842061EC548FF00563E97 /* main.m in Sources */,
 				8984C5C21ED516FF00110D4F /* YYClassInfo.m in Sources */,
+				C954B7B620F72CDB00CEA6CA /* UICollectionViewFlowLayout+ORIBProperty.m in Sources */,
 				890618911ED3E461003C78D2 /* LabelViewController.m in Sources */,
 				C920167120F327DC009F4A7B /* UNNotificationsManager.m in Sources */,
 			);

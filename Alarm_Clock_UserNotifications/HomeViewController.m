@@ -34,6 +34,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReciveNotification:) name:@"didReciveNotification" object:nil];
     
     self.tableView.tableFooterView = [UIView new];
+    
+    
+    self.navigationController.navigationBar.translucent = YES;
+    
 //    self.tableView.allowsSelectionDuringEditing
 }
 
