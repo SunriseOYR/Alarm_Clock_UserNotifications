@@ -19,9 +19,10 @@
 
 @interface UNNotificationsManager : NSObject
 
++ (instancetype)shared;
 
 //注册本地通知
-+ (void)registerLocalNotification;
++ (void)registerLocalNotification API_AVAILABLE(ios(10.0));
 
 #pragma mark -- AddNotification
 
@@ -29,7 +30,7 @@
  * requst  通知请求
  */
 + (void)addNotificationWithRequest:(UNNotificationRequest *)requst
-                  completionHanler:(void(^)(NSError *error))handler;
+                  completionHanler:(void(^)(NSError *error))handler API_AVAILABLE(ios(10.0));
 
 /*
  * content  通知内容
@@ -39,7 +40,7 @@
 + (void)addNotificationWithContent:(UNNotificationContent *)content
                          identifer:(NSString *)identifer
                            trigger:(UNNotificationTrigger *)trigger
-                  completionHanler:(void(^)(NSError *error))handler;
+                  completionHanler:(void(^)(NSError *error))handler API_AVAILABLE(ios(10.0));
 
 /*
  * interval 间隔
@@ -50,7 +51,7 @@
                           interval:(NSTimeInterval)interval
                          identifer:(NSString *)identifer
                           isRepeat:(BOOL)repeat
-                  completionHanler:(void(^)(NSError *error))handler;
+                  completionHanler:(void(^)(NSError *error))handler API_AVAILABLE(ios(10.0));
 
 /*
  * compents 日期组件
@@ -59,7 +60,7 @@
                     dateComponents:(NSDateComponents *)components
                          identifer:(NSString *)identifer
                           isRepeat:(BOOL)repeat
-                  completionHanler:(void(^)(NSError *error))handler;
+                  completionHanler:(void(^)(NSError *error))handler API_AVAILABLE(ios(10.0));
 
 /*
  * weekDay  周几
@@ -70,7 +71,7 @@
                               date:(NSDate *)date
                          identifer:(NSString *)identifer
                           isRepeat:(BOOL)repeat
-                  completionHanler:(void(^)(NSError *error))handler;
+                  completionHanler:(void(^)(NSError *error))handler API_AVAILABLE(ios(10.0));
 
 /*
  * body  主体
@@ -86,9 +87,34 @@
                           music:(NSString *)music
                       identifer:(NSString *)identifer
                        isRepeat:(BOOL)repeat
-               completionHanler:(void (^)(NSError *))handler;
+               completionHanler:(void (^)(NSError *error))handler API_AVAILABLE(ios(10.0));
+
+//每天重复
++ (void)addRepeatEveryDayNotificationWithBody:(NSString *)body
+                                        title:(NSString *)title
+                                     subTitle:(NSString *)subTitle
+                                         date:(NSDate *)date
+                                        music:(NSString *)music
+                                    identifer:(NSString *)identifer
+                             completionHanler:(void (^)(NSError *error))handler API_AVAILABLE(ios(10.0));
+
+//components
++ (void)addComponentsNotificationWithBody:(NSString *)body
+                                    title:(NSString *)title
+                                 subTitle:(NSString *)subTitle
+                           dateComponents:(NSDateComponents *)components
+                                    music:(NSString *)music
+                                identifer:(NSString *)identifer
+                                 isRepeat:(BOOL)repeat
+                         completionHanler:(void (^)(NSError *error))handler API_AVAILABLE(ios(10.0));
 
 #pragma mark -- NotificationManage
+
+/*
+ * 移除所有本地通知
+ */
++ (void)removeAllNotification;
+
 /*
  * identifer 标识符
  * 根据标识符 移除 本地通知
@@ -114,10 +140,12 @@
  * 获取已交付的标识符
  */
 + (void)getDeliveredNotificationIdentiferBlock:(void(^)(NSArray <NSString *>*identifers))idBlock;
+
 /*
- * 获取的标识符
+ * 获取为触发的标识符
  */
 + (void)getPendingNotificationIdentiferBlock:(void(^)(NSArray <NSString *>*identifers))idBlock;
+
 #pragma mark -- NSDateComponents
 /* NSDateComponents 日期组件
  * date  日期
@@ -165,27 +193,27 @@
  */
 + (UNMutableNotificationContent *)contentWithTitle:(NSString *)title
                                    subTitle:(NSString *)subTitle
-                                       body:(NSString *)body;
+                                              body:(NSString *)body API_AVAILABLE(ios(10.0));
 /*
  * badge  标记
  */
 + (UNMutableNotificationContent *)contentWithTitle:(NSString *)title
                                    subTitle:(NSString *)subTitle
                                        body:(NSString *)body
-                                      badge:(NSInteger)badge;
+                                             badge:(NSInteger)badge API_AVAILABLE(ios(10.0));
 /*
  * sound  声音
  */
 + (UNMutableNotificationContent *)contentWithTitle:(NSString *)title
                                    subTitle:(NSString *)subTitle
                                        body:(NSString *)body
-                                      sound:(UNNotificationSound *)sound;
+                                             sound:(UNNotificationSound *)sound API_AVAILABLE(ios(10.0));
 
 + (UNMutableNotificationContent *)contentWithTitle:(NSString *)title
                                    subTitle:(NSString *)subTitle
                                        body:(NSString *)body
                                       badge:(NSInteger)badge
-                                      sound:(UNNotificationSound *)sound;
+                                             sound:(UNNotificationSound *)sound API_AVAILABLE(ios(10.0));
 /*
  * attachment  附件
  */
@@ -194,7 +222,7 @@
                                        body:(NSString *)body
                                       badge:(NSInteger)badge
                                       sound:(UNNotificationSound *)sound
-                                 attachment:(UNNotificationAttachment *)attachment;
+                                        attachment:(UNNotificationAttachment *)attachment API_AVAILABLE(ios(10.0));
 /*
  * attachments  附件们
  */
@@ -203,7 +231,7 @@
                                        body:(NSString *)body
                                       badge:(NSInteger)badge
                                       sound:(UNNotificationSound *)sound
-                                attachments:(NSArray <UNNotificationAttachment *> *)attachments;
+                                       attachments:(NSArray <UNNotificationAttachment *> *)attachments API_AVAILABLE(ios(10.0));
 
 
 #pragma mark -- UNNotificationTrigger
@@ -211,16 +239,21 @@
  * interval  通知间隔
  * repeats 是否重复
  */
-+ (UNNotificationTrigger *)triggerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats;
++ (UNNotificationTrigger *)triggerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats API_AVAILABLE(ios(10.0));
 
 /*
  * components 时间组件
  */
-+ (UNNotificationTrigger *)triggerWithDateComponents:(NSDateComponents *)components repeats:(BOOL)repeats;
++ (UNNotificationTrigger *)triggerWithDateComponents:(NSDateComponents *)components repeats:(BOOL)repeats API_AVAILABLE(ios(10.0));
 
 /*
  * Region 地理信息
  */
-+ (UNNotificationTrigger *)triggerWithRegion:(CLRegion *)Region repeats:(BOOL)repeats;
++ (UNNotificationTrigger *)triggerWithRegion:(CLRegion *)Region repeats:(BOOL)repeats API_AVAILABLE(ios(10.0));
+
+
+#pragma mark -- UNNotificationSound
+
++ (UNNotificationSound *)soundWithName:(NSString *)name API_AVAILABLE(ios(10.0));
 
 @end

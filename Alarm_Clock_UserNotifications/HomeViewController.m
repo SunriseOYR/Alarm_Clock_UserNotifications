@@ -95,8 +95,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.tableView.editing) return;
     [self performSegueWithIdentifier:@"editPresentVCIdf" sender:self];
-    
-    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

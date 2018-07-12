@@ -17,6 +17,8 @@
 }
 
 - (void)setModel:(ClockModel *)model {
+    
+
     _model = model;
     self.timeLabel.text = model.timeClock;
     self.timeTextLabel.text = model.timeText;
@@ -34,4 +36,5 @@
         [self.delegate alarmCell:self switch:self.timeSwitch didSelectedAtIndexpath:self.indexPath];
     }
 }
+
 @end

@@ -41,7 +41,12 @@
         self.musicLabel.text = _model.music;
         self.laterSwitch.on = _model.isLater;
     }
-    
+    [self.tableView reloadData];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.tableView reloadData];
 }
 
 - (IBAction)action_backBtn:(id)sender {

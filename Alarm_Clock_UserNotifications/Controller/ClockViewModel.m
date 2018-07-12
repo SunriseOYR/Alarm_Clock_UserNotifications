@@ -13,18 +13,11 @@
 
 @implementation ClockViewModel
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _clockData = [NSMutableArray array];
-    }
-    return self;
-}
+
 
 - (void)saveData {
     YYCache *cache = [[YYCache alloc] initWithName:@"cache"];
-    [cache setObject:self forKey:[ClockViewModel keyForSaveClockData]];
+    [cache setObject:self.clockData forKey:[ClockViewModel keyForSaveClockData]];
 }
 
 - (void)addClockModel:(ClockModel *)model {
@@ -60,7 +53,7 @@
 - (void)reciveNotificationWithIdentifer:(NSString *)identifer {
     [self.clockData enumerateObjectsUsingBlock:^(ClockModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if ([obj.identifer isEqualToString:identifer] && obj.repeatStr.length == 0) {
+        if (([identifer hasPrefix:obj.identifer] || [obj.identifer isEqualToString:identifer]) && obj.repeatStr.length == 0) {
             [self changeClockSwitchIsOn:NO WithModel:obj];
         }
         
@@ -69,10 +62,17 @@
 
 + (instancetype)readData {
     YYCache *cache = [[YYCache alloc] initWithName:@"cache"];
-    ClockViewModel * viewModel = [cache objectForKey:[self keyForSaveClockData]];
-    if (!viewModel) {
-        viewModel = [[ClockViewModel alloc] init];
+    NSArray *datas = [cache objectForKey:[self keyForSaveClockData]];
+    
+    ClockViewModel *viewModel = [ClockViewModel new];
+    
+    if (datas.count > 0) {
+        viewModel.clockData = datas.mutableCopy;
+    }else {
+        viewModel.clockData = [NSMutableArray array];
     }
+    
+    
     
     [UNNotificationsManager getDeliveredNotificationIdentiferBlock:^(NSArray<NSString *> *identifers) {
         [identifers enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -146,7 +146,7 @@
             }else if([obj containsString:@"周六"]){
                 week = 7;
             }
-            [UNNotificationsManager addNotificationWithContent:[UNNotificationsManager contentWithTitle:@"闹钟" subTitle:nil body:nil sound:[UNNotificationSound soundNamed:self.music]] weekDay:week date:self.date identifer:self.identifer isRepeat:YES completionHanler:^(NSError *error) {
+            [UNNotificationsManager addNotificationWithContent:[UNNotificationsManager contentWithTitle:@"闹钟" subTitle:nil body:nil sound:[UNNotificationSound soundNamed:self.music]] weekDay:week date:self.date identifer:self.identifers[idx] isRepeat:YES completionHanler:^(NSError *error) {
                 NSLog(@"add error %@", error);
             }];
         }];

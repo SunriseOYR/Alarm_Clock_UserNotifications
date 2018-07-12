@@ -14,7 +14,17 @@
 
 @implementation UNNotificationsManager
 
-+ (void)registerLocalNotification {
++ (instancetype)shared {
+    
+    static UNNotificationsManager *manger = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manger = [UNNotificationsManager new];
+    });
+    return manger;
+}
+
++ (void)registerLocalNotification API_AVAILABLE(ios(10.0)) {
     
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -41,7 +51,9 @@
     
     [center setNotificationCategories:[NSSet setWithArray:@[category,stopCategory]]];
     
+    [UNUserNotificationCenter currentNotificationCenter].delegate = [self shared];
 }
+
 
 #pragma mark -- public
 + (void)addNotificationWithRequest:(UNNotificationRequest *)requst completionHanler:(void (^)(NSError *))handler {
@@ -53,12 +65,12 @@
     
     //设置 category
     UNMutableNotificationContent *aContent = [content mutableCopy];
-    if ([identifer hasPrefix:@"isLater"]) {
+//    if ([identifer hasPrefix:@"isLater"]) {
         aContent.categoryIdentifier = categryLaterIdf;
 
-    }else {
-        aContent.categoryIdentifier = categryStopIdf;
-    }
+//    }else {
+//        aContent.categoryIdentifier = categryStopIdf;
+//    }
     
     [self addNotificationWithRequest:[UNNotificationRequest requestWithIdentifier:identifer content:aContent trigger:trigger] completionHanler:handler];
 }
@@ -77,21 +89,39 @@
     [self addNotificationWithContent:content dateComponents:[self componentsWithDate:date weekday:weekDay] identifer:identifer isRepeat:repeat completionHanler:handler];
 }
 
-+ (void)addNotificationWithBody:(NSString *)body title:(NSString *)title subTitle:(NSString *)subTitle weekDay:(NSInteger)weekDay date:(NSDate *)date music:(NSString *)music identifer:(NSString *)identifer isRepeat:(BOOL)repeat completionHanler:(void (^)(NSError *))handler {
++ (void)addNotificationWithBody:(NSString *)body title:(NSString *)title subTitle:(NSString *)subTitle weekDay:(NSInteger)weekDay date:(NSDate *)date music:(NSString *)music identifer:(NSString *)identifer isRepeat:(BOOL)repeat completionHanler:(void (^)(NSError *))handler API_AVAILABLE(ios(10.0)) {
     
     UNNotificationContent *content = [self contentWithTitle:title subTitle:subTitle body:body sound:[UNNotificationSound soundNamed:music]];
     [self addNotificationWithContent:content weekDay:weekDay date:date identifer:identifer isRepeat:repeat completionHanler:handler];
-
 }
 
-+ (void)removeNotificationWithIdentifer:(NSString *)identifer {
++ (void)addRepeatEveryDayNotificationWithBody:(NSString *)body title:(NSString *)title subTitle:(NSString *)subTitle date:(NSDate *)date music:(NSString *)music identifer:(NSString *)identifer completionHanler:(void (^)(NSError *))handler API_AVAILABLE(ios(10.0)) {
+    
+    UNNotificationContent *content = [self contentWithTitle:title subTitle:subTitle body:body sound:[UNNotificationSound soundNamed:music]];
+    [self addNotificationWithContent:content dateComponents:[self componentsEveryDayWithDate:date] identifer:identifer isRepeat:YES completionHanler:handler];
+}
+
++ (void)addComponentsNotificationWithBody:(NSString *)body title:(NSString *)title subTitle:(NSString *)subTitle dateComponents:(NSDateComponents *)components music:(NSString *)music identifer:(NSString *)identifer isRepeat:(BOOL)repeat completionHanler:(void (^)(NSError *))handler API_AVAILABLE(ios(10.0)) {
+    
+    UNNotificationContent *content = [self contentWithTitle:title subTitle:subTitle body:body sound:[UNNotificationSound soundNamed:music]];
+    [self addNotificationWithContent:content dateComponents:components identifer:identifer isRepeat:repeat completionHanler:handler];
+}
+
+#pragma Notification mange
+
++ (void)removeAllNotification API_AVAILABLE(ios(10.0)) {
+    [[self center] removeAllDeliveredNotifications];
+    [[self center] removeAllPendingNotificationRequests];
+}
+
++ (void)removeNotificationWithIdentifer:(NSString *)identifer API_AVAILABLE(ios(10.0)) {
     //移除已经展示过的
     [[self center] removeDeliveredNotificationsWithIdentifiers:@[identifer]];
     //移除未展示过的
     [[self center] removePendingNotificationRequestsWithIdentifiers:@[identifer]];
 }
 
-+ (void)removeNotificationWithIdentifers:(NSArray<NSString *> *)identifers {
++ (void)removeNotificationWithIdentifers:(NSArray<NSString *> *)identifers API_AVAILABLE(ios(10.0)) {
     
     [[self center] removeDeliveredNotificationsWithIdentifiers:identifers];
     [[self center] removePendingNotificationRequestsWithIdentifiers:identifers];
@@ -109,7 +139,7 @@
     }];
 }
 
-+ (void)getAllNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *identifers))idBlock {
++ (void)getAllNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *identifers))idBlock API_AVAILABLE(ios(10.0)) {
     
     [[self center] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
         NSMutableArray *array= [NSMutableArray array];
@@ -129,7 +159,7 @@
     }];
 }
 
-+ (void)getDeliveredNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *))idBlock {
++ (void)getDeliveredNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *))idBlock API_AVAILABLE(ios(10.0)) {
     
     [[self center] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
         NSMutableArray *array= [NSMutableArray array];
@@ -144,7 +174,7 @@
     }];
 }
 
-+ (void)getPendingNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *))idBlock {
++ (void)getPendingNotificationIdentiferBlock:(void (^)(NSArray<NSString *> *))idBlock API_AVAILABLE(ios(10.0)) {
 
     [[self center] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
         NSMutableArray *array= [NSMutableArray array];
@@ -268,9 +298,54 @@
     return [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:repeats];
 }
 
++ (UNNotificationSound *)soundWithName:(NSString *)name {
+    return [UNNotificationSound soundNamed:name];
+}
+
 #pragma mark -- paivate
-+ (UNUserNotificationCenter *)center {
++ (UNUserNotificationCenter *)center API_AVAILABLE(ios(10.0)) {
     return [UNUserNotificationCenter currentNotificationCenter];
+}
+
+#pragma mark -- UNUserNotificationCenterDelegate
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler  API_AVAILABLE(ios(10.0)) {
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : notification.request.identifier}];
+    completionHandler(UNNotificationPresentationOptionAlert + UNNotificationPresentationOptionSound + UNNotificationPresentationOptionBadge);
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
+    NSLog(@"%s", __func__);
+    [self handCommnet:response];
+    completionHandler();
+}
+
+-(void)handCommnet:(UNNotificationResponse *)response API_AVAILABLE(ios(10.0)) {
+    NSString *actionIdef = response.actionIdentifier;
+    NSDate *date;
+    if ([actionIdef isEqualToString:actionStop]) {
+        return;
+    }else if ([actionIdef isEqualToString:actionFiveMin]) {
+        date = [NSDate dateWithTimeIntervalSinceNow:5 * 60];
+    }else if ([actionIdef isEqualToString:actionHalfAnHour]) {
+        date = [NSDate dateWithTimeIntervalSinceNow:30 * 60];
+    }else if ([actionIdef isEqualToString:actionOneHour]) {
+        date = [NSDate dateWithTimeIntervalSinceNow:60 * 60];
+    }
+    
+    if (date) {
+        
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        format.dateFormat = @"hhmmss";
+        NSString *identifer = [NSString stringWithFormat:@"%@%@",response.notification.request.identifier, [format stringFromDate:[NSDate date]]];
+        
+        [UNNotificationsManager addNotificationWithContent:response.notification.request.content identifer:identifer trigger:[UNNotificationsManager triggerWithDateComponents:[UNNotificationsManager componentsWithDate:date] repeats:NO] completionHanler:^(NSError *error) {
+            NSLog(@"dart %@", error);
+        }];
+        
+    }else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : response.notification.request.identifier}];
+    }
 }
 
 @end

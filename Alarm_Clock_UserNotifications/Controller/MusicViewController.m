@@ -8,6 +8,7 @@
 
 #import "MusicViewController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface MusicViewController () {
     SystemSoundID _currentID;
@@ -15,6 +16,8 @@
 }
 
 @property (nonatomic, strong) NSArray *musicList;
+@property (nonatomic, strong) AVPlayer *player;
+
 
 @end
 
@@ -90,17 +93,13 @@
 }
 
 - (void)playWithIndex:(NSInteger)index {
-    //关闭上次
-    AudioServicesDisposeSystemSoundID(_currentID);
-    AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
 
     NSURL *url = [[NSBundle mainBundle] URLForAuxiliaryExecutable:_musicList[index]];
-    SystemSoundID soundID = 0;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef _Nonnull)(url), &soundID);
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(url), &soundID);
-//    NSLog(@"ID = %U",soundID);
-    AudioServicesPlaySystemSound(soundID);
-    _currentID = soundID;
+    
+    AVPlayerItem *playerItem = [[AVPlayerItem alloc]initWithURL:url];
+    // 播放当前资源
+    [self.player replaceCurrentItemWithPlayerItem:playerItem];
+    [self.player play];
     
     //震动
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
@@ -108,8 +107,17 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    AudioServicesDisposeSystemSoundID(_currentID);
-    AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
+    [self.player pause];
+
 }
+
+- (AVPlayer *)player {
+    if (_player == nil) {
+        _player = [[AVPlayer alloc] init];
+        _player.volume = 1.0; // 默认最大音量
+    }
+    return _player;
+}
+
 
 @end

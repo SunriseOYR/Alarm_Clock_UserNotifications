@@ -22,7 +22,6 @@
 		8984C5C11ED516FF00110D4F /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8984C5BD1ED516FF00110D4F /* NSObject+YYModel.m */; };
 		8984C5C21ED516FF00110D4F /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8984C5BF1ED516FF00110D4F /* YYClassInfo.m */; };
 		8984C5C51ED521D000110D4F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8984C5C41ED521D000110D4F /* libsqlite3.0.tbd */; };
-		8984C5C91ED5271300110D4F /* UNNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8984C5C81ED5271300110D4F /* UNNotificationsManager.m */; };
 		89D50B831ED43EB500EF24DD /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D50B7C1ED43EB500EF24DD /* YYCache.m */; };
 		89D50B841ED43EB500EF24DD /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D50B7E1ED43EB500EF24DD /* YYDiskCache.m */; };
 		89D50B851ED43EB500EF24DD /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D50B801ED43EB500EF24DD /* YYKVStorage.m */; };
@@ -36,6 +35,7 @@
 		89E842141EC548FF00563E97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89E842121EC548FF00563E97 /* LaunchScreen.storyboard */; };
 		89E8421F1EC548FF00563E97 /* Alarm_Clock_UserNotificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E8421E1EC548FF00563E97 /* Alarm_Clock_UserNotificationsTests.m */; };
 		89E8422A1EC548FF00563E97 /* Alarm_Clock_UserNotificationsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89E842291EC548FF00563E97 /* Alarm_Clock_UserNotificationsUITests.m */; };
+		C920167120F327DC009F4A7B /* UNNotificationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C920167020F327DC009F4A7B /* UNNotificationsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +80,6 @@
 		8984C5BF1ED516FF00110D4F /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
 		8984C5C01ED516FF00110D4F /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		8984C5C41ED521D000110D4F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		8984C5C71ED5271300110D4F /* UNNotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNNotificationsManager.h; sourceTree = "<group>"; };
-		8984C5C81ED5271300110D4F /* UNNotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNNotificationsManager.m; sourceTree = "<group>"; };
 		89D50B7B1ED43EB500EF24DD /* YYCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCache.h; sourceTree = "<group>"; };
 		89D50B7C1ED43EB500EF24DD /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
 		89D50B7D1ED43EB500EF24DD /* YYDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYDiskCache.h; sourceTree = "<group>"; };
@@ -108,6 +106,8 @@
 		89E842251EC548FF00563E97 /* Alarm_Clock_UserNotificationsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Alarm_Clock_UserNotificationsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89E842291EC548FF00563E97 /* Alarm_Clock_UserNotificationsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Alarm_Clock_UserNotificationsUITests.m; sourceTree = "<group>"; };
 		89E8422B1EC548FF00563E97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C920166F20F327DC009F4A7B /* UNNotificationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNNotificationsManager.h; sourceTree = "<group>"; };
+		C920167020F327DC009F4A7B /* UNNotificationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNNotificationsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,18 +159,9 @@
 		8984C5C61ED526EE00110D4F /* public */ = {
 			isa = PBXGroup;
 			children = (
-				898A74901EF90A59005DFC51 /* UserNotification */,
-				8984C5C71ED5271300110D4F /* UNNotificationsManager.h */,
-				8984C5C81ED5271300110D4F /* UNNotificationsManager.m */,
+				C920166E20F327DC009F4A7B /* UNNotificationsManager */,
 			);
 			path = public;
-			sourceTree = "<group>";
-		};
-		898A74901EF90A59005DFC51 /* UserNotification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserNotification;
 			sourceTree = "<group>";
 		};
 		8999F2C71ED92183007C7A69 /* resource */ = {
@@ -315,6 +306,15 @@
 			path = Alarm_Clock_UserNotificationsUITests;
 			sourceTree = "<group>";
 		};
+		C920166E20F327DC009F4A7B /* UNNotificationsManager */ = {
+			isa = PBXGroup;
+			children = (
+				C920166F20F327DC009F4A7B /* UNNotificationsManager.h */,
+				C920167020F327DC009F4A7B /* UNNotificationsManager.m */,
+			);
+			path = UNNotificationsManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -382,7 +382,7 @@
 				TargetAttributes = {
 					89E842001EC548FF00563E97 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = UNNVERQ745;
+						DevelopmentTeam = 43WNAPBJGK;
 						ProvisioningStyle = Automatic;
 					};
 					89E842191EC548FF00563E97 = {
@@ -467,11 +467,11 @@
 				8984C5C11ED516FF00110D4F /* NSObject+YYModel.m in Sources */,
 				89251E0D1EDEA08A00CC95A3 /* BaseTableViewController.m in Sources */,
 				890618941ED41411003C78D2 /* ClockViewModel.m in Sources */,
-				8984C5C91ED5271300110D4F /* UNNotificationsManager.m in Sources */,
 				89E842091EC548FF00563E97 /* AppDelegate.m in Sources */,
 				89E842061EC548FF00563E97 /* main.m in Sources */,
 				8984C5C21ED516FF00110D4F /* YYClassInfo.m in Sources */,
 				890618911ED3E461003C78D2 /* LabelViewController.m in Sources */,
+				C920167120F327DC009F4A7B /* UNNotificationsManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,8 +621,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UNNVERQ745;
+				DEVELOPMENT_TEAM = 43WNAPBJGK;
 				INFOPLIST_FILE = Alarm_Clock_UserNotifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "OYR.Alarm-Clock-UserNotifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -634,8 +635,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UNNVERQ745;
+				DEVELOPMENT_TEAM = 43WNAPBJGK;
 				INFOPLIST_FILE = Alarm_Clock_UserNotifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "OYR.Alarm-Clock-UserNotifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
