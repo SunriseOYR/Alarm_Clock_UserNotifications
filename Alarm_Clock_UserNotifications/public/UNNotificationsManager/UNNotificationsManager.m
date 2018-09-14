@@ -10,6 +10,9 @@
 
 @interface UNNotificationsManager ()<UNUserNotificationCenterDelegate>
 
+@property (nonatomic, strong) dispatch_semaphore_t semaphore;
+
+
 @end
 
 @implementation UNNotificationsManager
@@ -58,7 +61,27 @@
 #pragma mark -- public
 + (void)addNotificationWithRequest:(UNNotificationRequest *)requst completionHanler:(void (^)(NSError *))handler {
     
-    [[self center] addNotificationRequest:requst withCompletionHandler:handler];
+    dispatch_semaphore_t semaphore = [UNNotificationsManager shared].semaphore;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        
+        [self getAllNotificationIdentiferBlock:^(NSArray<NSString *> *identifers) {
+            
+            if (identifers.count >= 63) {
+                dispatch_semaphore_signal(semaphore);
+                return;
+            }
+            [[self center] addNotificationRequest:requst withCompletionHandler:^(NSError * _Nullable error) {
+                dispatch_semaphore_signal(semaphore);
+                if (handler) {
+                    handler(error);
+                }
+            }];
+        }];
+    });
+    
+//    [[self center] addNotificationRequest:requst withCompletionHandler:handler];
 }
 
 + (void)addNotificationWithContent:(UNNotificationContent *)content identifer:(NSString *)identifer trigger:(UNNotificationTrigger *)trigger completionHanler:(void (^)(NSError *))handler {
@@ -346,6 +369,14 @@
     }else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : response.notification.request.identifier}];
     }
+}
+
+#pragma mark -- getter
+- (dispatch_semaphore_t)semaphore {
+    if (!_semaphore) {
+        _semaphore = dispatch_semaphore_create(1);
+    }
+    return _semaphore;
 }
 
 @end
