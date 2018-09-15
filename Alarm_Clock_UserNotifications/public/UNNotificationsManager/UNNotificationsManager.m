@@ -8,10 +8,13 @@
 
 #import "UNNotificationsManager.h"
 
+NSString * const UNDidReciveRemoteNotifationKey = @"UNDidReciveRemateNotifationKey";
+NSString * const UNDidReciveLocalNotifationKey = @"UNDidReciveLocalNotifationKey";
+NSString * const UNNotifationInfoIdentiferKey = @"UNNotifationInfoIdentiferKey";
+
 @interface UNNotificationsManager ()<UNUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
-
 
 @end
 
@@ -333,15 +336,30 @@
 #pragma mark -- UNUserNotificationCenterDelegate
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler  API_AVAILABLE(ios(10.0)) {
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : notification.request.identifier}];
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        
+        NSDictionary * userInfo = notification.request.content.userInfo;
+        [[NSNotificationCenter defaultCenter] postNotificationName:UNDidReciveRemoteNotifationKey object:nil userInfo:userInfo];
+    }else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UNDidReciveLocalNotifationKey object:nil userInfo:@{UNNotifationInfoIdentiferKey : notification.request.identifier}];
+    }
+    
     completionHandler(UNNotificationPresentationOptionAlert + UNNotificationPresentationOptionSound + UNNotificationPresentationOptionBadge);
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
-    NSLog(@"%s", __func__);
-    [self handCommnet:response];
+    
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        
+        NSDictionary * userInfo = response.notification.request.content.userInfo;
+        [[NSNotificationCenter defaultCenter] postNotificationName:UNDidReciveRemoteNotifationKey object:nil userInfo:userInfo];
+    }else {
+        [self handCommnet:response];
+    }
+    
     completionHandler();
 }
+
 
 -(void)handCommnet:(UNNotificationResponse *)response API_AVAILABLE(ios(10.0)) {
     NSString *actionIdef = response.actionIdentifier;
@@ -359,15 +377,15 @@
     if (date) {
         
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        format.dateFormat = @"hhmmss";
-        NSString *identifer = [NSString stringWithFormat:@"%@%@",response.notification.request.identifier, [format stringFromDate:[NSDate date]]];
+        format.dateFormat = @"yyyyMMddhhmmss";
+        NSString *identifer = [format stringFromDate:[NSDate date]];
         
         [UNNotificationsManager addNotificationWithContent:response.notification.request.content identifer:identifer trigger:[UNNotificationsManager triggerWithDateComponents:[UNNotificationsManager componentsWithDate:date] repeats:NO] completionHanler:^(NSError *error) {
             NSLog(@"dart %@", error);
         }];
         
     }else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"didReciveNotification" object:nil userInfo:@{@"idf" : response.notification.request.identifier}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UNDidReciveLocalNotifationKey object:nil userInfo:@{UNNotifationInfoIdentiferKey : response.notification.request.identifier}];
     }
 }
 

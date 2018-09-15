@@ -17,6 +17,10 @@
 #define actionOneHour @"oneHour"
 #define actionStop @"stopCancel"
 
+extern NSString * const UNDidReciveRemoteNotifationKey;
+extern NSString * const UNDidReciveLocalNotifationKey;
+extern NSString * const UNNotifationInfoIdentiferKey;
+
 @interface UNNotificationsManager : NSObject
 
 + (instancetype)shared;
