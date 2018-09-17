@@ -8,6 +8,11 @@
 * 收到通知效果图   
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/002.gif?raw=true)
 
+
+**更新日志**  
+
+2018.09.12  由于iOS系统限制了注册本地推送的数量，最大的注册量为64条，且一旦超出64条，所有的推送都将失效，故而在添加推送的时候做了一个判断，超过64条后，将不添加，以免影响已经添加的推送。
+
 * 前言  
 最近项目中涉及到了本地通知的功能，索性就模仿系统闹钟写了个demo，对于iOS系统闹钟，应该都比较熟悉，该demo，基本实现了系统闹钟的全部功能。该demo本地通知使用的是iOS10 推出的UserNotifications， 关于UserNotifications的介绍和使用，网上已有诸多文章，在此就不多做赘述。
 

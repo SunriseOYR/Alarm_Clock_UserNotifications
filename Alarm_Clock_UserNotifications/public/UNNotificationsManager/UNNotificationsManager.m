@@ -71,7 +71,7 @@ NSString * const UNNotifationInfoIdentiferKey = @"UNNotifationInfoIdentiferKey";
         
         [self getAllNotificationIdentiferBlock:^(NSArray<NSString *> *identifers) {
             
-            if (identifers.count >= 63) {
+            if (identifers.count >= 64) {
                 dispatch_semaphore_signal(semaphore);
                 return;
             }
