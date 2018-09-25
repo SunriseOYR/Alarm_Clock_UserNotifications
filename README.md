@@ -1,6 +1,7 @@
 # Alarm_Clock_UserNotifications
 
-###ios系统闹钟
+# 仿ios系统闹钟
+
 
 * 添加闹钟效果图   
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/001.gif?raw=true)  
@@ -13,11 +14,20 @@
 
 2018.09.12  由于iOS系统限制了注册本地推送的数量，最大的注册量为64条，且一旦超出64条，所有的推送都将失效，故而在添加推送的时候做了一个判断，超过64条后，将不添加，以免影响已经添加的推送。
 
-* 前言  
+# 前言  
 最近项目中涉及到了本地通知的功能，索性就模仿系统闹钟写了个demo，对于iOS系统闹钟，应该都比较熟悉，该demo，基本实现了系统闹钟的全部功能。该demo本地通知使用的是iOS10 推出的UserNotifications， 关于UserNotifications的介绍和使用，网上已有诸多文章，在此就不多做赘述。
 
-* UNNotificationsManager 关于闹钟所使用到的UserNotifications做了一个简单的封装,部分代码如下  
+# UNNotificationsManager  
     
+关于闹钟所使用到的UserNotifications库 做了一个简单的封装, 包含了注册通知，添加通知，以及 一些通知组件的 实现方法，同时提供了可供 外部使用的收到推送的通知
+
+    extern NSString * const UNDidReciveRemoteNotifationKey;//收到远程通知时调用
+    extern NSString * const UNDidReciveLocalNotifationKey; //收到本地通知时
+    extern NSString * const UNNotifationInfoIdentiferKey;  //本地通知userinfo 里 Identifer的key值
+
+
+一些其他方法，以demo为准
+
     //注册本地通知
       + (void)registerLocalNotification;
       
@@ -74,7 +84,9 @@
        */
       + (UNNotificationTrigger *)triggerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats;
     
-* 添加闹钟 
+    
+# 添加闹钟 
+    
 > 普通闹钟 
     
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/004.jpeg?raw=true)
@@ -116,7 +128,7 @@
         }];
     }
 
-* 铃声   
+# 铃声   
 这里无法获取系统铃声和震动类型，自己在网上找了点[铃声素材](http://www.zedge.net/ringtones/0-1-3-ios)。 系统铃声需要caf格式，MP3和caf 格式相互转化方法如下
 
         //控制台输入
@@ -125,7 +137,7 @@
 
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/006.jpeg?raw=true)
 
-* 通知栏选项 
+# 通知栏选项 
 
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/007.png?raw=true)
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/010.png?raw=true)
@@ -188,14 +200,7 @@
         }
     }
 
-* 首页日期格式  
 
- ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/008.png?raw=true)
 
-这个格式应该很多人知道，但是笔者在写这个demo的时候还不知道，所以还是亮出来吧
 
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    format.dateFormat = @"ahh:mm";
-    format.AMSymbol = @"上午";
-    format.PMSymbol = @"下午"; 
 
