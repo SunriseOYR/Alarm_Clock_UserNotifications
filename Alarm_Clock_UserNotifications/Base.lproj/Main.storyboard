@@ -94,6 +94,9 @@
                                         <state key="normal" title="编辑">
                                             <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="action_editBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oq1-Hr-XV0"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6g-bO-pWM">
                                         <rect key="frame" x="333" y="15" width="30" height="54"/>
@@ -154,11 +157,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="闹钟" id="ZdO-RC-BsI">
-                        <barButtonItem key="leftBarButtonItem" title="编辑" id="uLj-6s-VLD">
-                            <connections>
-                                <action selector="action_editBtn:" destination="BYZ-38-t0r" id="7Vu-AK-O2g"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="编辑" id="uLj-6s-VLD"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VIb-JE-dly"/>
                     </navigationItem>
                     <connections>
@@ -168,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468" y="-325"/>
+            <point key="canvasLocation" x="-620" y="-335"/>
         </scene>
         <!--添加闹钟-->
         <scene sceneID="wR6-vg-TLO">

@@ -34,18 +34,26 @@
     [self.dataPicker setValue:[UIColor whiteColor] forKey:@"textColor"];
     self.dataPicker.backgroundColor = [UIColor blackColor];
     
-    if (_model) {
+    [self or_reloadData];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self.tableView reloadData];
+}
+
+- (void)or_reloadData {
+    
+    if (!_model) {
+        _model = [ClockModel new];
+    }else {
         self.dataPicker.date = _model.date;
         self.repeatLabel.text = _model.repeatStr;
         self.tagLabel.text = _model.tagStr;
         self.musicLabel.text = _model.music;
         self.laterSwitch.on = _model.isLater;
     }
-    [self.tableView reloadData];
-}
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
     [self.tableView reloadData];
 }
 
@@ -97,11 +105,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (ClockModel *)model {
-    if (!_model) {
-        _model = [ClockModel new];
-    }
-    return _model;
+- (void)setModel:(ClockModel *)model {
+    _model = model;
+    [self or_reloadData];
 }
+
+
 
 @end
