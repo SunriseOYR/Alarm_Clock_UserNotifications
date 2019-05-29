@@ -99,9 +99,11 @@
     
 ![](https://github.com/SunriseOYR/Alarm_Clock_UserNotifications/blob/master/gif/005.jpeg?raw=true)
 
-            [UNNotificationsManager addNotificationWithContent:[UNNotificationsManager contentWithTitle:@"时钟" subTitle:nil body:nil sound:[UNNotificationSound soundNamed:self.music]] dateComponents:[UNNotificationsManager componentsEveryDayWithDate:self.date] identifer:self.identifer isRepeat:self.repeats completionHanler:^(NSError *error) {
+```
+[UNNotificationsManager addNotificationWithContent:[UNNotificationsManager contentWithTitle:@"时钟" subTitle:nil body:nil sound:[UNNotificationSound soundNamed:self.music]] dateComponents:[UNNotificationsManager componentsEveryDayWithDate:self.date] identifer:self.identifer isRepeat:self.repeats completionHanler:^(NSError *error) {
             NSLog(@"add error %@", error);
-        }];
+}];
+```
 
 > 每周重复（周一，周二等）
 
@@ -200,7 +202,8 @@
         }
     }
 
-
+* 持续推送  
+本地铃声 时长小于30s。当手机处于后台，息屏的时候，铃声音乐是可以放完的的，手机处于活跃状态，只会持续到推送消失，经评论区 @[bigcancancancan](https://www.jianshu.com/u/34c4479caf71) 指出，想要在活跃状态持续推送本地闹钟，需要用户在    设置-通知-横幅风格    选择持续。
 
 
 
